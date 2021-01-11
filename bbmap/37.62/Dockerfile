@@ -8,12 +8,12 @@ LABEL maintainer="Rodrigo Meneses"
 LABEL maintainer.email="rsilvame@umcutrecht.nl"
 
 # Software metadata
-ENV VERSION=1.14.5
-LABEL software="Prokka"
-LABEL software.version=${VERSION}
-LABEL description="Rapid prokaryotic genome annotation"
-LABEL webstie="https://github.com/tseemann/prokka"
-LABEL license="GPLv3"
+ENV VERSION=37.62
+LABEL software="BBMap"
+LABEL software.version="37.62"
+LABEL description="Adapter and quality trimming of FastQ files"
+LABEL webstie="https://sourceforge.net/project/bbmap"
+LABEL license="https://github.com/BioInfoTools/BBMap/blob/master/license.txt"
 
 # Installation
 ENV PYTHONDONTWRITEBYTECODE=true
@@ -21,6 +21,6 @@ RUN conda config --add channels bioconda
 
 RUN conda install -c bioconda --yes --freeze-installed \
     nomkl \
-    prokka=${VERSION}
+    bbmap=${VERSION}
 
 RUN conda clean -afy
