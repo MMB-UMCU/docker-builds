@@ -17,9 +17,9 @@ LABEL license="GPLv3"
 
 # Installation
 ENV PYTHONDONTWRITEBYTECODE=true
-RUN conda config --add channels bioconda
+RUN conda config --add channels conda-forge bioconda
 
-RUN conda install -c bioconda --yes --freeze-installed \
+RUN conda install -c conda-forge -c bioconda --yes --freeze-installed \
     nomkl \
     prokka=${VERSION}
 
