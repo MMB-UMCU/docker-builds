@@ -28,9 +28,6 @@ RUN conda config --add channels defaults &&\
     conda config --add channels bioconda &&\
     conda config --add channels conda-forge
 
-# Install snakemake
-RUN conda install -y snakemake=5.14.0
-
 # Install bactofidia
 RUN wget https://gitlab.com/aschuerch/bactofidia/-/archive/master/bactofidia-${VERSION}.tar.gz &&\
     tar -xzvf bactofidia-${VERSION}.tar.gz &&\
