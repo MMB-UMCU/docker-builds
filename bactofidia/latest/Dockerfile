@@ -2,7 +2,7 @@ FROM continuumio/miniconda3
 
 # Container metadata
 LABEL base.image="continuumio/miniconda3"
-LABEL container.version="0.0.1"
+LABEL container.version="1.0.0"
 LABEL maintainer="Rodrigo Meneses"
 LABEL maintainer.email="R.SilvaMeneses@umcutrecht.nl"
 
