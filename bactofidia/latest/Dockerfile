@@ -1,8 +1,8 @@
-FROM ubuntu:xenial
+FROM continuumio/miniconda3
 
 # Container metadata
-LABEL base.image="ubuntu:xenial"
-LABEL container.version="0.0.0"
+LABEL base.image="continuumio/miniconda3"
+LABEL container.version="0.0.1"
 LABEL maintainer="Rodrigo Meneses"
 LABEL maintainer.email="R.SilvaMeneses@umcutrecht.nl"
 
@@ -17,13 +17,7 @@ LABEL license="https://gitlab.com/aschuerch/bactofidia/blob/${VERSION}/LICENSE.t
 # Install general dependencies
 RUN apt-get update && apt-get install -y wget
 
-# Install miniconda
-RUN wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh &&\
-    bash Miniconda3-latest-Linux-x86_64.sh -p /miniconda3 -b &&\
-    rm -f Miniconda3-latest-Linux-x86-64.sh
-
-ENV PATH=/miniconda3/bin:${PATH}
-
+# Set up conda channels
 RUN conda config --add channels defaults &&\
     conda config --add channels bioconda &&\
     conda config --add channels conda-forge
@@ -32,11 +26,15 @@ RUN conda config --add channels defaults &&\
 RUN wget https://gitlab.com/aschuerch/bactofidia/-/archive/master/bactofidia-${VERSION}.tar.gz &&\
     tar -xzvf bactofidia-${VERSION}.tar.gz &&\
     rm -rf bactofidia-${VERSION}.tar.gz &&\
-    mv bactofidia-${VERSION} bactofidia &&\
-    cd bactofidia
+    mv bactofidia-${VERSION} /opt/bactofidia
+
+RUN ln -s /opt/bactofidia/*.sh /usr/bin/. &&\
+    ln -s /opt/bactofidia/Snakefile.assembly /usr/bin/.
 
 # Singularity compatibility
 ENV LC_ALL=C.UTF-8
 ENV LANG=C.UTF-8
 
-WORKDIR /bactofidia
+# Workdir for Docker users
+RUN mkdir /data
+WORKDIR /data
