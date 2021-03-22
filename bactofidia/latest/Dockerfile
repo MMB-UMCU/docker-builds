@@ -31,7 +31,8 @@ RUN wget https://gitlab.com/aschuerch/bactofidia/-/archive/master/bactofidia-${V
 RUN ln -s /opt/bactofidia/*.sh /usr/bin/. &&\
     ln -s /opt/bactofidia/Snakefile.assembly /usr/bin/.
 
-# Singularity compatibility
+# Set environment
+ENV PATH=/opt/conda/bin:/opt/bactofidia:$PATH
 ENV LC_ALL=C.UTF-8
 ENV LANG=C.UTF-8
 
