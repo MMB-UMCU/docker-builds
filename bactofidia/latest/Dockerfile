@@ -7,7 +7,7 @@ LABEL maintainer="Rodrigo Meneses"
 LABEL maintainer.email="R.SilvaMeneses@umcutrecht.nl"
 
 # Software metadata
-ARG VERSION="master"
+ARG VERSION="docker"
 LABEL software="bactofidia"
 LABEL software.version=${VERSION}
 LABEL description="Snakemake workflow for microbial WGS assembly and basic analysis"
@@ -26,7 +26,7 @@ RUN conda install mamba
 RUN mamba install snakemake=5.14.0
 
 # Install bactofidia
-RUN wget https://gitlab.com/aschuerch/bactofidia/-/archive/master/bactofidia-${VERSION}.tar.gz &&\
+RUN wget https://gitlab.com/aschuerch/bactofidia/-/archive/docker/bactofidia-${VERSION}.tar.gz &&\
     tar -xzvf bactofidia-${VERSION}.tar.gz &&\
     rm -rf bactofidia-${VERSION}.tar.gz &&\
     mv bactofidia-${VERSION} bactofidia &&\
