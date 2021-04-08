@@ -2,7 +2,7 @@ FROM continuumio/miniconda3
 
 # Container metadata
 LABEL base.image="continuumio/miniconda3"
-LABEL container.version="1.0.0"
+LABEL container.version="0.1.0"
 LABEL maintainer="Rodrigo Meneses"
 LABEL maintainer.email="R.SilvaMeneses@umcutrecht.nl"
 
@@ -22,28 +22,21 @@ RUN conda config --add channels defaults &&\
     conda config --add channels bioconda &&\
     conda config --add channels conda-forge
 
-RUN conda install mamba
-RUN mamba install snakemake=5.14.0
+# Install snakemake
+RUN conda install mamba &&\
+    mamba install snakemake=5.14.0
 
 # Install bactofidia
 RUN wget https://gitlab.com/aschuerch/bactofidia/-/archive/docker/bactofidia-${VERSION}.tar.gz &&\
     tar -xzvf bactofidia-${VERSION}.tar.gz &&\
     rm -rf bactofidia-${VERSION}.tar.gz &&\
-    mv bactofidia-${VERSION} bactofidia &&\
-    cp -r bactofidia /opt/bactofidia
+    mv bactofidia-${VERSION} /opt/bactofidia
 
 # Setup environment
-RUN ln -s /opt/bactofidia/*.sh /usr/bin/. &&\
-    ln -s /opt/bactofidia/Snakefile.assembly /usr/bin/.
-#    ln -sf /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh
+RUN ln -s /opt/bactofidia/* /usr/bin/. &&\
+    mkdir /data
 
-#RUN cp ~/.bashrc ~/.bash_conda_env
-#RUN echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bash_condaenv
-#RUN echo "conda activate base" >> ~/.bash_condaenv
-
-#ENV BASH_ENV="~/.bash_condaenv"
 ENV LC_ALL=C.UTF-8
 ENV LANG=C.UTF-8
 
-RUN cd bactofidia
-#ENTRYPOINT ["/bin/bash"]
+WORKDIR /data
