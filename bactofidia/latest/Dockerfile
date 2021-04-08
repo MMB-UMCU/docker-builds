@@ -33,9 +33,13 @@ RUN wget https://gitlab.com/aschuerch/bactofidia/-/archive/docker/bactofidia-${V
     mv bactofidia-${VERSION} /opt/bactofidia
 
 # Setup environment
-RUN ln -s /opt/bactofidia/* /usr/bin/. &&\
-    mkdir /data
-
+RUN ln -s /opt/bactofidia/*.sh /usr/bin/. &&\
+    ln -s /opt/bactofidia/Snakefile.assembly /usr/bin/. &&\
+    mkdir /data &&\
+    ln -s /opt/bactofidia/envs/ /data/. &&\
+    ln -s /opt/bactofidia/config/ /data/. &&\
+    ln -s /opt/bactofidia/test/ /data/.
+    
 ENV LC_ALL=C.UTF-8
 ENV LANG=C.UTF-8
 
