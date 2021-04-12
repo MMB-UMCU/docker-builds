@@ -2,12 +2,12 @@ FROM continuumio/miniconda3
 
 # Container metadata
 LABEL base.image="continuumio/miniconda3"
-LABEL container.version="0.1.0"
+LABEL container.version="1.0.0"
 LABEL maintainer="Rodrigo Meneses"
 LABEL maintainer.email="R.SilvaMeneses@umcutrecht.nl"
 
 # Software metadata
-ARG VERSION="docker"
+ARG VERSION="master"
 LABEL software="bactofidia"
 LABEL software.version=${VERSION}
 LABEL description="Snakemake workflow for microbial WGS assembly and basic analysis"
@@ -27,7 +27,7 @@ RUN conda install mamba &&\
     mamba install snakemake=5.14.0
 
 # Install bactofidia
-RUN wget https://gitlab.com/aschuerch/bactofidia/-/archive/docker/bactofidia-${VERSION}.tar.gz &&\
+RUN wget https://gitlab.com/aschuerch/bactofidia/-/archive/master/bactofidia-${VERSION}.tar.gz &&\
     tar -xzvf bactofidia-${VERSION}.tar.gz &&\
     rm -rf bactofidia-${VERSION}.tar.gz &&\
     mv bactofidia-${VERSION} /opt/bactofidia
