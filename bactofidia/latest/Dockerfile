@@ -37,8 +37,7 @@ RUN ln -s /opt/bactofidia/*.sh /usr/bin/. &&\
     ln -s /opt/bactofidia/Snakefile.assembly /usr/bin/Snakefile.assembly &&\
     mkdir /data &&\
     ln -s /opt/bactofidia/envs /usr/bin/. &&\
-    ln -s /opt/bactofidia/config /usr/bin/. &&\
-    ln -s /opt/bactofidia/test /usr/bin/.
+    ln -s /opt/bactofidia/config /usr/bin/.
     
 ENV LC_ALL=C.UTF-8
 ENV LANG=C.UTF-8
