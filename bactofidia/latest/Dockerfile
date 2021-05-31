@@ -2,12 +2,12 @@ FROM continuumio/miniconda3
 
 # Container metadata
 LABEL base.image="continuumio/miniconda3"
-LABEL container.version="1.0.0"
+LABEL container.version="1.0.2"
 LABEL maintainer="Rodrigo Meneses"
 LABEL maintainer.email="R.SilvaMeneses@umcutrecht.nl"
 
 # Software metadata
-ARG VERSION="master"
+ARG VERSION="v1.0"
 LABEL software="bactofidia"
 LABEL software.version=${VERSION}
 LABEL description="Snakemake workflow for microbial WGS assembly and basic analysis"
@@ -27,18 +27,18 @@ RUN conda install mamba &&\
     mamba install snakemake=5.14.0
 
 # Install bactofidia
-RUN wget https://gitlab.com/aschuerch/bactofidia/-/archive/master/bactofidia-${VERSION}.tar.gz &&\
+RUN wget https://gitlab.com/aschuerch/bactofidia/-/archive/${VERSION}/bactofidia-${VERSION}.tar.gz &&\
     tar -xzvf bactofidia-${VERSION}.tar.gz &&\
     rm -rf bactofidia-${VERSION}.tar.gz &&\
     mv bactofidia-${VERSION} /opt/bactofidia
 
 # Setup environment
 RUN ln -s /opt/bactofidia/*.sh /usr/bin/. &&\
-    ln -s /opt/bactofidia/Snakefile.assembly /usr/bin/. &&\
+    ln -s /opt/bactofidia/Snakefile.assembly /usr/bin/Snakefile.assembly &&\
     mkdir /data &&\
-    ln -s /opt/bactofidia/envs/ /data/. &&\
-    ln -s /opt/bactofidia/config/ /data/. &&\
-    ln -s /opt/bactofidia/test/ /data/.
+    ln -s /opt/bactofidia/envs /usr/bin/. &&\
+    ln -s /opt/bactofidia/config /usr/bin/. &&\
+    ln -s /opt/bactofidia/test /usr/bin/.
     
 ENV LC_ALL=C.UTF-8
 ENV LANG=C.UTF-8
