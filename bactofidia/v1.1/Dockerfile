@@ -7,7 +7,7 @@ LABEL maintainer="Rodrigo Meneses"
 LABEL maintainer.email="R.SilvaMeneses@umcutrecht.nl"
 
 # Software metadata
-ARG VERSION="v1.0"
+ARG VERSION="v1.1"
 LABEL software="bactofidia"
 LABEL software.version=${VERSION}
 LABEL description="Snakemake workflow for microbial WGS assembly and basic analysis"
