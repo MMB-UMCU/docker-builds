@@ -15,14 +15,15 @@ LABEL website="https://github.com/jessieren/DeepVirFinder"
 LABEL license="https://github.com/jessieren/DeepVirFinder/blob/6a823fbb5e554a8347df5c136af51d96168e77e5/licence.md"
 
 # These are dependencies of DeepVirFinder
-RUN pip3 install --upgrade pip && pip3 install \
+RUN pip3 install --upgrade pip && pip install \
     numpy \
     theano==1.0.3 \
     keras==2.2.4 \
     scikit-learn \
     Biopython \
-    h5py
-
+    h5py==2.10.0 \
+    mkl
+    
 # Install DeepVirFinder
 RUN wget https://github.com/jessieren/DeepVirFinder/archive/refs/heads/master.zip && \
     unzip master.zip -d /opt && \
@@ -35,5 +36,5 @@ RUN wget https://github.com/jessieren/DeepVirFinder/archive/refs/heads/master.zi
 ENV PATH="/opt/DeepVirFinder:${PATH}" \
     LC_ALL=C.UTF-8 \
     LANG=C.UTF-8
-    
+
 WORKDIR /data
