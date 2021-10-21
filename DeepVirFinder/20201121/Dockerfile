@@ -2,7 +2,7 @@ FROM python:3.6-buster
 
 # Container metadata
 LABEL base.image="python:3.6-buster"
-LABEL container.version="0.1"
+LABEL container.version="1.0"
 LABEL maintainer="Rodrigo Meneses"
 LABEL maintainer.email="R.SilvaMeneses@umcutrecht.nl"
 
