@@ -24,7 +24,7 @@ RUN conda config --add channels defaults &&\
 
 # Install snakemake
 RUN conda install mamba &&\
-    mamba install snakemake=7.6.2
+    mamba install snakemake=7.6.2 && \
     mamba install tabulate=0.8.10
 
 # Install bactofidia
