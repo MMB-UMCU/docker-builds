@@ -2,7 +2,7 @@ FROM continuumio/miniconda3
 
 # Container metadata
 LABEL base.image="continuumio/miniconda3"
-LABEL container.version="1.0.3"
+LABEL container.version="1.0.4"
 LABEL maintainer="Malbert Rogers"
 LABEL maintainer.email="M.R.C.Rogers-2@umcutrecht.nl"
 
@@ -24,7 +24,8 @@ RUN conda config --add channels defaults &&\
 
 # Install snakemake
 RUN conda install mamba &&\
-    mamba install snakemake=7.6.2
+    mamba install snakemake=7.6.2 && \
+    mamba install tabulate=0.8.10
 
 # Install bactofidia
 RUN wget https://gitlab.com/aschuerch/bactofidia/-/archive/${VERSION}/bactofidia-${VERSION}.tar.gz &&\
